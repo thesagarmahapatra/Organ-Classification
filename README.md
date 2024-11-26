@@ -81,5 +81,5 @@ MedMNIST v2 is a large-scale, lightweight benchmark dataset for 2D and 3D biomed
 - **Utkarsh Tiwari** (24M0754)
 - **Vijendra Kumar Vaishya** (24M2133)
 
-Department of ICSIT, IITN  
-Course: CS 725
+IIT Bombay
+Course: CS 725 -  Foundations of Machine Learning
