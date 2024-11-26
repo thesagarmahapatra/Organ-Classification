@@ -1,35 +1,50 @@
 import numpy as np
+import pandas as pd
 import os
 from PIL import Image
-import pandas as pd
 
-data = np.load('breastmnist_224.npz')
-train_images = data['train_images']
-train_labels = data['train_labels']
+dataset_path = 'breastmnist_224.npz'
+data = np.load(dataset_path)
 
-output_dir = 'BreastMNIST_Folder'
-images_dir = os.path.join(output_dir, 'images')
+splits = {
+    'train': (data['train_images'], data['train_labels']),
+    'val': (data['val_images'], data['val_labels']),
+    'test': (data['test_images'], data['test_labels']),
+}
 
-os.makedirs(images_dir, exist_ok=True)
+base_output_dir = 'BreastMNIST_Folder'
+image_output_dir = os.path.join(base_output_dir, 'images')
+os.makedirs(image_output_dir, exist_ok=True)
 
-data_list = []
+def save_image_array(image_array, output_path):
+    image = Image.fromarray(image_array.astype('uint8'))
+    image.save(output_path)
 
-for i in range(train_images.shape[0]):
-    image = train_images[i]
-    label = train_labels[i]
-    
-    image_pil = Image.fromarray(image)
-    image_filename = f'image_{i}.png'
-    image_path = os.path.join(images_dir, image_filename)
-    image_pil.save(image_path)
+all_dataframes = []
 
-    label_list = [image_filename] + label.tolist() 
-    data_list.append(label_list)
+for split, (images, labels) in splits.items():
+    image_paths = []
+    label_list = []
 
-column_names = ['filename'] + [f'label_{i}' for i in range(train_labels.shape[1])]
-df = pd.DataFrame(data_list, columns=column_names)
+    split_image_dir = os.path.join(image_output_dir, split)
+    os.makedirs(split_image_dir, exist_ok=True)
 
-csv_path = os.path.join(output_dir, 'labels.csv')
-df.to_csv(csv_path, index=False)
+    for i, (image, label) in enumerate(zip(images, labels)):
+        image_filename = f'{split}_image_{i}.png'
+        image_filepath = os.path.join(split_image_dir, image_filename)
 
-print('Images have been saved to the Images directory and labels have been saved to labels.csv')
+        save_image_array(image, image_filepath)
+
+        image_paths.append(image_filepath)
+        label_list.append(label)
+
+    df = pd.DataFrame({'image_path': image_paths, 'label': label_list})
+    csv_path = os.path.join(base_output_dir, f'{split}_dataset.csv')
+    df.to_csv(csv_path, index=False)
+    all_dataframes.append(df)
+
+combined_df = pd.concat(all_dataframes, ignore_index=True)
+combined_csv_path = os.path.join(base_output_dir, 'combined_dataset.csv')
+combined_df.to_csv(combined_csv_path, index=False)
+
+print(f"All saved")

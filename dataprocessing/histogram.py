@@ -12,9 +12,8 @@ hist = cv2.calcHist([image], [0], None, [256], [0, 256])
 
 hist = hist / hist.sum()
 
-# Plot the histogram
 plt.figure(figsize=(8, 6))
-plt.title("Grayscale Histogram")
+plt.title("Histogram")
 plt.xlabel("Pixel Intensity")
 plt.ylabel("Frequency")
 plt.plot(hist, color='black')
