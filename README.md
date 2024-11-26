@@ -47,6 +47,16 @@ MedMNIST v2 is a large-scale, lightweight benchmark dataset for 2D and 3D biomed
 
 ---
 
+## 📊 Table of Results
+
+| Model                  | Dataset      | Baseline Accuracy (%) | Our Accuracy (%) | Notes                                   |
+|-------------------------|--------------|-----------------------|------------------|-----------------------------------------|
+| ResNet                 | OCTMNIST     | 85.0                 | 85.0             | Taken directly from the MedMNIST paper. |
+| Vision Transformer (ViT) | OCTMNIST   | 83.5                 | 84.8             | Beat the baseline with fine-tuning.     |
+| Modified UNet          | RetinaMNIST  | 92.3                 | 94.7             | Outperformed all baselines.             |
+| Vision Transformer (ViT) vs AutoML | RetinaMNIST | 88.5                 | 90.5             | Significant margin over AutoML.         |
+
+---
 ## ❌ Challenges
 
 - Fine-tuning Vision Transformer and Modified UNet models required significant parameter adjustments and manual tuning.
@@ -82,4 +92,4 @@ MedMNIST v2 is a large-scale, lightweight benchmark dataset for 2D and 3D biomed
 - **Vijendra Kumar Vaishya** (24M2133)
 
 IIT Bombay
-Course: CS 725 -  Foundations of Machine Learning
+Course: CS 725 - Foundations of Machine Learning
