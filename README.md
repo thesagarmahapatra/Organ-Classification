@@ -68,7 +68,7 @@ MedMNIST v2 is a large-scale, lightweight benchmark dataset for 2D and 3D biomed
 ├── data/               # Contains datasets and preprocessing scripts
 ├── models/             # Model implementations (ResNet, ViT, UNet)
 ├── experiments/        # Training and evaluation scripts
-├── results/            # Logs and output results
+├── dataprocessing/     # Thresholding and masking scripts
 └── README.md           # Project documentation
 ```
 
