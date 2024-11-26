@@ -1,0 +1,19 @@
+.
+├── README.md
+├── data
+│   ├── bloodmnist.npz
+│   └── breastmnist_224.npz
+├── dataprocessing
+│   ├── extractimages.py
+│   ├── histogram.py
+│   └── segment.py
+├── experiments
+│   ├── resnet_unet_etal
+│   └── transformer
+├── folder_structure.txt
+└── models
+    ├── resnet_unet_etal
+    ├── transformer
+    └── unet_model.pth
+
+9 directories, 8 files

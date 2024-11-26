@@ -75,11 +75,22 @@ MedMNIST v2 is a large-scale, lightweight benchmark dataset for 2D and 3D biomed
 ## 📂 Project Structure
 
 ```
+├── README.md
 ├── data/               # Contains datasets and preprocessing scripts
-├── models/             # Model implementations (ResNet, ViT, UNet)
-├── experiments/        # Training and evaluation scripts
+│   ├── bloodmnist.npz
+│   └── breastmnist_224.npz
 ├── dataprocessing/     # Thresholding and masking scripts
-└── README.md           # Project documentation
+│   ├── extractimages.py
+│   ├── histogram.py
+│   └── segment.py
+├── experiments/        # Training and evaluation scripts
+│   ├── resnet_unet_etal
+│   └── transformer
+├── folder_structure.txt
+├── models/             # Model implementations (ResNet, ViT, UNet)
+    ├── resnet_unet_etal
+    ├── transformer
+    └── unet_model.pth
 ```
 
 ---
